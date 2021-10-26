@@ -1,17 +1,21 @@
-import React from 'react'
+import React from 'react';
 
-const DisplayQuote = ({quoteList}) => {
-return (
-
-    quoteList &&
-    <div className="Display-quote">
-        <img src="{quoteList.image}" alt="{quoteList.character}"/>
-        <p>{quoteList.character}</p>
-        <figcaption>
-        <p>{quoteList.quote}</p>
-        </figcaption>
-    </div>
-)
+function DisplayQuote ({ quote }) {
+  return (    
+      <div className='quote'>
+        <img src={quote.image} alt={quote.character} />
+        <ul>
+          <li>
+            <em>Character Name:</em> {quote.character}
+          </li>
+          <li> 
+              <em>Character Quote:</em> {quote.quote}</li>
+          <li>
+            <em>Character direction:</em> {quote.characterDirection}
+          </li>
+        </ul>
+      </div>
+  );
 }
 
 export default DisplayQuote;

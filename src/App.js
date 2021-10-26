@@ -1,26 +1,26 @@
-import axios from 'axios';
 import React, {useState} from 'react';
+import axios from 'axios';
 
+import DisplayQuote from './components/DisplayQuote';
 import './App.css';
-import DisplayQuote from './components/DisplayQuote.jsx'
+
 
 function App() {
-  const [quoteList, setQuoteList] = useState();
-
-  const GetQuote = () => {
+  const [quote, setQuote] = useState('');
+  const getQuote= () => {
     axios
     .get('https://simpsons-quotes-api.herokuapp.com/quotes')
-    .then((res) => res.data)
-    .then((data) => {
-      setQuoteList(data)
-    }
-  }
+    .then((response) => response.data)
+    .then(data => {
+      setQuote(data[0])
+    })  
+  };
   return (
-    <div>
-    <DisplayQuote quoteList={quoteList}/>
-    <button type ="button" onClick="{GetQuote}">get random quote</button>
-    </div>
-  );
-}
+  <div className="App">
+  <DisplayQuote quote={quote} />
+  <button type="button" onClick={getQuote}>Get Simpson Quote</button>
+</div>
+);
+};
 
 export default App;
